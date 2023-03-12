@@ -9,10 +9,12 @@ const Header = () => {
   // Our site features two visual headers, but they should be
   // grouped semantically as a single header.
   return (
-    <header>
+    <Wrapper>
       <SuperHeader />
       <MainHeader>
-        <Logo />
+        <LogoWrapper>
+          <Logo />
+        </LogoWrapper>
         <Nav>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
@@ -21,17 +23,31 @@ const Header = () => {
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
+        <EmptyElement />
       </MainHeader>
-    </header>
+
+    </Wrapper>
   );
 };
+
+
+const Wrapper = styled.header`
+  /* display: flex; */
+`;
 
 const MainHeader = styled.div`
   padding: 0 32px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+  display: flex;
+  height: 72px;
+  align-items: baseline;
 `;
 
-const Nav = styled.nav``;
+const Nav = styled.nav`
+  display: flex;
+  gap: 48px;
+  margin: 0 48px;
+`;
 
 const NavLink = styled.a`
   font-size: 1.125rem;
@@ -39,10 +55,21 @@ const NavLink = styled.a`
   text-decoration: none;
   color: ${COLORS.gray[900]};
   font-weight: ${WEIGHTS.medium};
+  line-height: 72px;
+  vertical-align: middle;
 
   &:first-of-type {
     color: ${COLORS.secondary};
   }
 `;
+
+const EmptyElement = styled.div`
+  margin-left: auto;
+`;
+
+const LogoWrapper = styled.div`
+margin-right: auto;
+/* align-self: center; */
+`
 
 export default Header;
